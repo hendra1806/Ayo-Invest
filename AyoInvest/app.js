@@ -23,6 +23,7 @@ app.get('/register',Controller.register)
 app.post('/register',Controller.registerPost)
 
 app.use(function (req, res, next) {
+    // console.log(req.session)
     if(!req.session.userId){
         const error = 'Please login first'
         res.redirect(`/login?error=${error}`)
@@ -41,12 +42,17 @@ const isAdmin = function (req, res, next) {
 }
 
 app.get('/investments',Controller.investmentList)
-// app.get('/students',Controller.studentList)
-// app.get('/students/add',Controller.addStudent)
-// app.post('/students/add',Controller.addStudentPost)
-// app.get('/masters/:masterId',Controller.masterStudent)
-// app.get('/students/:studentId/train',Controller.train)
-// app.get('/students/:studentId/graduate',Controller.graduate)
+app.get('/addWallet',Controller.addWallet)
+app.get('/topUp',Controller.topUp)
+app.post('/topUp',Controller.topUpPost)
+app.get('/userInvestments',Controller.userInvest)
+app.get('/addInvestment',Controller.addInvestment)
+app.post('/addInvestment',Controller.addInvestmentPost)
+app.get('/logout',Controller.logOut)
+app.get('/:id/buy',Controller.buy)
+app.get('/:id/sell',Controller.sell)
+app.get('/:id/companyDetail',Controller.companyDetail)
+app.get('/:id/Delete',Controller.delete)
 
 app.listen(port,()=>{
     console.log(`Listening on port ${port}`)

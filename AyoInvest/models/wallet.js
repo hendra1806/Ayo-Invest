@@ -20,5 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Wallet',
   });
+  Wallet.beforeCreate((instance,option)=>{
+    instance.money=0
+  })
   return Wallet;
 };

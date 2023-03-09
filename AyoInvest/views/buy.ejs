@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up</title>
+</head>
+<%- include('partials/home')  %>
+<body>
+    <h1>Top Up for <%= user.name %></h1>
+    <form action="/topUp" method="post">
+        <label for="money">Money</label><br>
+        <input type="number" id="money" name="money" placeholder="Ex: 10000000"><br><br>
+        <select name="id" id="id">
+            <option selected value="<%= user.Wallet.id %>"><%= user.Wallet.id %></option>
+        </select>
+        
+        <button type="submit">Confirm Buy</button>
+    </form> 
+</body>
+</html>

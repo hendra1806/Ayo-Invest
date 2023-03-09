@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Detail</title>
+</head>
+<body>
+    <%- include('partials/home')  %>
+    <h1>Detail Company</h1>
+    <p>Logo</p>
+    <img src="<%=company.companyLogo%>" alt="Company logo">
+    <p>Company Name : <%=company.companyName%></p>
+    <p>Email : <%=company.email%></p>
+    <p>Address : <%=company.address%></p>
+    <p>Description : <%=company.description%></p>
+    
+</body>
+</html>
