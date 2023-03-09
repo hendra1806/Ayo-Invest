@@ -21,6 +21,7 @@ class Controller{
             }
         }
         let user;
+        let invest;
         User.findByPk(userId, {
             include: Wallet
         })
@@ -28,9 +29,16 @@ class Controller{
             user=users
             return Investment.findAll(options)
         })
-        .then((invest)=>{
+        .then((investment)=>{
             // console.log(user)
-            res.render('investmentList',{invest,user,error,formatRupiah})
+            invest=investment
+            return UserInvestment.findAll({
+                where:{UserId:userId}
+            })
+        })
+        .then((userInvest)=>{
+            // res.send(userInvest)
+            res.render('investmentList',{invest,user,error,userInvest,formatRupiah})
         })
         .catch((err)=>{
             res.send(err)
