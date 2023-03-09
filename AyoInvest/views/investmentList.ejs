@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment List</title>
+</head>
+<body>
+    <h1>Investment List</h1>
+    <a href=""><button>Add Student</button></a>
+    <form action="" method="get">
+        <input type="text" name="search">
+        <input type="submit" value="submit">
+    </form>
+    <table border="1">
+        <thead>
+            <th>No.</th>
+            <th>Investment Name</th>
+            <th>InvestmentAmount/items</th>
+            <th>InvestmentType</th>
+            <th>Company Name</th>
+            <th>Holders</th>
+        </thead>
+        <tbody>
+        <% invest.forEach((el) => {%>
+            <td><%=el.id%></td>
+            <td><%=el.investmentName%></td>
+            <td><%=el.investmentAmount%></td>
+            <td><%=el.investmentType%></td>
+            <td><%=el.Company.companyName%></td>
+            <td>
+                <% el.Users.forEach((el)=>{ %>
+                    <a href=""><%=el.name%></a>
+                <%})%>
+            </td>
+            </tbody>
+        <%})%>
+    </table>
+</body>
+</html>

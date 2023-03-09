@@ -8,7 +8,7 @@ app.set('view engine','ejs')
 app.use(express.urlencoded({extended:false}))
 
 app.get('/',Controller.home)
-// app.get('/masters',Controller.masterList)
+app.get('/investments',Controller.investmentList)
 // app.get('/students',Controller.studentList)
 // app.get('/students/add',Controller.addStudent)
 // app.post('/students/add',Controller.addStudentPost)
