@@ -223,9 +223,11 @@ class Controller{
     }
     static companyDetail(req,res){
         const {id}=req.params
-        Company.findByPk(id)
+        Company.findByPk(id,{
+            include:Investment
+        })
         .then((company)=>{
-            res.render('detailCompany',{company})
+            res.render('detailCompany',{company,formatRupiah})
         })
         .catch((err)=>{
             res.send(err)

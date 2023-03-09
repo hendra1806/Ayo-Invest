@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +9,34 @@
     <title>Company Detail</title>
 </head>
 <body>
+    
     <%- include('partials/home')  %>
     <h1>Detail Company</h1>
-    <p>Logo</p>
+    <p><%=company.logo%></p>
     <img src="<%=company.companyLogo%>" alt="Company logo">
     <p>Company Name : <%=company.companyName%></p>
     <p>Email : <%=company.email%></p>
     <p>Address : <%=company.address%></p>
     <p>Description : <%=company.description%></p>
-    
+    Company Qr:    <div id="qrcode"></div>
+        <script type="text/javascript">
+        new QRCode(document.getElementById("qrcode"), "/<%=company.id%>/companyDetail");
+        </script>
+    <table border="1">
+        <thead>
+            <th>No.</th>
+            <th>Investment Name</th>
+            <th>InvestmentAmount/items</th>
+            <th>InvestmentType</th>
+        </thead>
+        <tbody>
+        <% company.Investments.forEach((el,index) => {%>
+            <td><%=++index%></td>
+            <td><%=el.investmentName%></td>
+            <td><%=formatRupiah(el.investmentAmount)%></td>
+            <td><%=el.investmentType%></td>
+            </tbody>
+        <% }) %>
+    </table>
 </body>
 </html>
