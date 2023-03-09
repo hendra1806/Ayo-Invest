@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Register Form</h1>
+    <%- include('partials/error')  %>
     <form action="/register" method="post">
         <label for="name">Name</label><br>
         <input type="text" name="name" id="name" placeholder="Insert your name"><br><br>

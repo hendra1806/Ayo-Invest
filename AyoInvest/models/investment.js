@@ -19,10 +19,48 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Investment.init({
-    investmentName: DataTypes.STRING,
-    investmentAmount: DataTypes.INTEGER,
-    investmentType: DataTypes.STRING,
-    CompanyId:DataTypes.INTEGER
+    investmentName: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:`Investment Name harus diisi`
+        }
+      }
+    },
+    investmentAmount: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:`Investment Amount harus diisi`
+        }
+      }
+    },
+    investmentType: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:`Investment Type harus dipilih`
+        },
+        notNull:{
+          msg:`Investment Type harus dipilih`
+        }
+      }
+    },
+    CompanyId:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:`Company harus dipilih`
+        },
+        notNull:{
+          msg:`Company Type harus dipilih`
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Investment',

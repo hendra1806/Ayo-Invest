@@ -9,6 +9,7 @@
 <body>
     <%- include('partials/home')  %>
     <h1>Add Investment</h1>
+    <%- include('partials/error')  %>
     <form action="/addInvestment" method="post">
     <label for="investmentName">Investment Name</label><br>
     <input type="text" id="investmentName" name="investmentName" placeholder="Input investment name here"><br><br>

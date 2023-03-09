@@ -19,10 +19,46 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: DataTypes.STRING,
+    name: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:`Nama harus diisi`
+        }
+      }
+    },
+    email: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:`Email harus diisi`
+        },
+        unique:true
+      }
+    },
+    password: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:`Password harus diisi`
+        }
+      }
+    },
+    role: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:`Role harus dipilih`
+        },
+        notNull:{
+          msg:`Role Harus dipilih`
+        }
+      }
+    },
     WalletId: DataTypes.INTEGER
   }, {
     sequelize,

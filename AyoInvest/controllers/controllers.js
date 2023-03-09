@@ -37,16 +37,30 @@ class Controller{
         })
     }
     static register(req,res){
-        res.render('registerForm')
+        let {errors} = req.query
+        res.render('registerForm',{errors})
     }
     static registerPost(req,res){
         const{name,email,password,role}=req.body
         User.create({name,email,password,role})
-        .then((newUser)=>{
+        .then(()=>{
             res.redirect('/login')
         })
         .catch((err)=>{
-            res.send(err)
+            if(err.name = 'SequelizeValidationError'){
+                let errors=err.errors.map((el)=>{
+                    if(el.message =='Invalid validator function: unique'){
+                        return (`Email sudah terdaftar`)
+                    }else{
+                    return el.message
+                    }
+                })
+                // console.log(errors)
+                res.redirect(`/register?errors=${errors}`)
+            }else{
+                res.send(err)
+            }
+            
         })
     }
     static login(req,res){
@@ -229,12 +243,13 @@ class Controller{
         })
     }
     static addInvestment(req,res){
+        let {errors} = req.query
         Company.findAll()
         .then((company)=>{
-            res.render('addInvestment',{company})
+            res.render('addInvestment',{company,errors})
         })
         .catch((err)=>{
-            res.send(err)
+         req.send(err) 
         })
 
     }
@@ -246,7 +261,16 @@ class Controller{
             res.redirect('/investments')
         })
         .catch((err)=>{
-            res.send(err)
+            if(err.name = 'SequelizeValidationError'){
+                let errors=err.errors.map((el)=>{
+                    return el.message
+                })
+                console.log(errors)
+                res.redirect(`/addInvestment?errors=${errors}`)
+            }else{
+                res.send(err)
+            }
+            
         })
     }
     static logOut(req, res) {
