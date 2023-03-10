@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       })
 
     }
+    get createdDate(){
+      return this.createdAt.toISOString().split('T')[0]
+    }
   }
   Investment.init({
     investmentName: {
